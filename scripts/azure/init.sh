@@ -8,7 +8,7 @@ sudo apt-get -yq -o Dpkg::Options::="--force-overwrite" install --fix-broken
 
 echo "Install NVidia drivers"
 CUDA_REPO_PKG=cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
-wget -O /tmp/${CUDA_REPO_PKG} http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/${CUDA_REPO_PKG}
+wget -q -O /tmp/${CUDA_REPO_PKG} http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/${CUDA_REPO_PKG}
 sudo dpkg -i /tmp/${CUDA_REPO_PKG}
 sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
 rm -f /tmp/${CUDA_REPO_PKG}
@@ -20,8 +20,7 @@ sudo apt-get -yq install cuda-drivers cuda-driver-dev-10-0 cuda-10-0
 echo "Install CudaNN"
 CUDADIR=$(mktemp -d)
 CUDATGZ="cudnn-10.0-linux-x64-v7.4.2.24.tgz"
-# CUDNN
-wget "https://developer.download.nvidia.com/compute/redist/cudnn/v7.4.2/$CUDATGZ"
+wget -q "https://developer.download.nvidia.com/compute/redist/cudnn/v7.4.2/$CUDATGZ"
 
 tar -xvf "$CUDATGZ" -C "$CUDADIR"
 

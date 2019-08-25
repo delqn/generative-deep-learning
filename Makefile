@@ -18,15 +18,23 @@ run:
 
 .PHONY: train-sequential
 train-sequential:
-	python3 -c 'from gedelearn import get_model_sequential, compile, train, save, show; m=get_model_sequential(); compile(m); train(m); save(m)'
+	python3 -c 'from pupil import get_model_sequential, compile, train, save, show; m=get_model_sequential(); compile(m); train(m); save(m)'
 
 .PHONY: train
 train:
-	python3 -c 'from gedelearn import get_model, compile, train, save, show; m=get_model(); compile(m); train(m); save(m)'
+	python3 -c 'from pupil import get_model, compile, train, save, show; m=get_model(); compile(m); train(m); save(m)'
 
-.PHONY: train-on-azure
-train-on-azure:
-	./scripts/train-on-azure.sh
+.PHONY: azure-bootstrap
+azure-bootstrap:
+	./scripts/azure/bootstrap.sh
+
+.PHONY: azure-train
+azure-train:
+	./scripts/azure/train.sh
+
+.PHONY: azure-deallocate
+azure-deallocate:
+	./scripts/azure/deallocate.sh
 
 .PHONY: clean
 clean:

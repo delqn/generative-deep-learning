@@ -12,7 +12,7 @@ az vm show -d \
    --query powerState -o tsv
 
 echo "Shut down VM..."
-echo az vm stop \
+az vm stop \
    --subscription $AZURE_SUBSCR \
    --resource-group $AZURE_RESOURCEGRP \
    --name $AZURE_VMNAME \
@@ -20,7 +20,7 @@ echo az vm stop \
 
 
 echo "Deallocating VM..."
-echo az vm deallocate \
+az vm deallocate \
    --subscription $AZURE_SUBSCR \
    --resource-group $AZURE_RESOURCEGRP \
    --name $AZURE_VMNAME \
