@@ -6,11 +6,13 @@ set -aueo pipefail
 
 source .env
 
+echo "Start the VM"
 az vm start \
    --subscription $AZURE_SUBSCR \
    --resource-group $AZURE_RESOURCEGRP \
    --name $AZURE_VMNAME
 
+echo "Get the IP address of the VM"
 IP=$(az vm show -d \
    --resource-group $AZURE_RESOURCEGRP \
    --name $AZURE_VMNAME \
