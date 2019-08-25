@@ -19,7 +19,7 @@ IP=$(az vm show -d \
 
 scp -oStrictHostKeyChecking=no .ssh/id_rsa* $AZURE_USER@$IP:.ssh/
 scp ./scripts/trainer-init.sh $AZURE_USER@$IP:
-ssh $AZURE_USER@$IP './trainer-init.sh'
+# ssh $AZURE_USER@$IP './trainer-init.sh'
 ssh -oStrictHostKeyChecking=no $AZURE_USER@$IP "cd src/generative-deep-learning && git pull --rebase origin master && make train && git commit -m 'new model' -a && git push origin master"
 
 echo az vm stop \

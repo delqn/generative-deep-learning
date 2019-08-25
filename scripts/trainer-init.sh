@@ -24,8 +24,7 @@ mkdir -p ~/src
 cd ~/src
 git clone git@github.com:delqn/generative-deep-learning.git || true
 cd ~/src/generative-deep-learning
-pip3 install tensorflow
-pip3 install virtualenv
+pip3 install tensorflow virtualenv
 virtualenv generative
 source generative/bin/activate
 make prereqs
