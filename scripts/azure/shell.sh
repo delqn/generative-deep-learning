@@ -22,7 +22,7 @@ echo "Copy GitHub config..."
 scp -oStrictHostKeyChecking=no ~/.gitconfig $AZURE_USER@$IP:
 
 echo "Copy Init script..."
-scp ./scripts/init.sh $AZURE_USER@$IP:
+scp ./scripts/azure/init.sh $AZURE_USER@$IP:
 
 echo "Shell into it..."
 ssh -oStrictHostKeyChecking=no $AZURE_USER@$IP

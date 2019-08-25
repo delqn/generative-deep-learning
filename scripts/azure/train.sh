@@ -22,4 +22,4 @@ echo "Copy train script..."
 scp -oStrictHostKeyChecking=no ./scripts/azure/remote-train.sh $AZURE_USER@$IP:
 
 echo "Train..."
-ssh -oStrictHostKeyChecking=no "$AZURE_USER@$IP" "remote-train.sh"
+ssh -oStrictHostKeyChecking=no "$AZURE_USER@$IP" "./remote-train.sh"
