@@ -4,7 +4,9 @@ SHELL:=bash
 
 .PHONY: prereqs
 prereqs:
-	sudo apt-get install python3-pip
+	sudo apt-get update -yq
+	sudo apt-get upgrade -yq
+	sudo apt-get -yq install python3-pip
 	pip3 install virtualenv virtualenvwrapper
 	virtualenv generative
 	source generative/bin/activate
