@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -auexo pipefail
+set -aueo pipefail
 
 CUDADIR=$(mktemp -d)
 CUDATGZ="cudnn-10.0-linux-x64-v7.4.2.24.tgz"

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-set -auexo pipefail
+set -aueo pipefail
 
-# az login
+# This assumes "az login" has been done already
 
 source .env
 
