@@ -1,6 +1,6 @@
 # Generative Deep Learning Experiments
 
-This repository contains generative deep learning experiments using [Azure NV GPU VMs](Standard NV12_Promo (12 vcpus, 112 GiB memory))
+This repository contains generative deep learning experiments using [Azure NV GPU VMs w/ Nvidia Tesla M60](Standard NV12_Promo (12 vcpus, 112 GiB memory))
 
 # Using this
   - Train locally: `make train`
