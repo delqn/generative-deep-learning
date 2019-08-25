@@ -3,7 +3,7 @@
 from keras.utils import to_categorical
 from keras.datasets import cifar10
 
-NUM_CLASSES = 10
+from .const import NUM_CLASSES
 
 def get_train_data():
     (x_train, y_train), (_, _) = cifar10.load_data()
