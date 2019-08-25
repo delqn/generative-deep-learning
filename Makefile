@@ -17,8 +17,8 @@ run:
 
 .PHONY: train-sequential
 train-sequential:
-	python3 -c 'from gedelearn import get_model_sequential, compile, train, show; m=get_model_sequential(); compile(m); train(m)'
+	python3 -c 'from gedelearn import get_model_sequential, compile, train, save, show; m=get_model_sequential(); compile(m); train(m); save(m)'
 
 .PHONY: train
 train:
-	python3 -c 'from gedelearn import get_model, compile, train, show; m=get_model(); compile(m); train(m)'
+	python3 -c 'from gedelearn import get_model, compile, train, save, show; m=get_model(); compile(m); train(m); save(m)'
