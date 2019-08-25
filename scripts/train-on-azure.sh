@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -auexo pipefail
+
 # az login
 
 source .env
@@ -15,9 +17,10 @@ IP=$(az vm show -d \
    --name $AZURE_VMNAME \
    --query publicIps -o tsv)
 
-scp .ssh/id_rsa* $AZURE_USER@$IP:.ssh/
-
-ssh $AZURE_USER@$IP "sudo apt-get install git make && mkdir -p /home/$AZURE_USER/src && git clone git@github.com:delqn/generative-deep-learning.git && cd /home/$AZURE_USER/src/generative-deep-learning && make train && git commit -m 'new model' -a && git push origin master"
+scp -oStrictHostKeyChecking=no .ssh/id_rsa* $AZURE_USER@$IP:.ssh/
+scp ./trainer-init.sh $AZURE_USER@$IP:
+ssh $AZURE_USER@$IP 'trainer-init.sh'
+ssh -oStrictHostKeyChecking=no $AZURE_USER@$IP "cd src/generative-deep-learning && git pull --rebase origin master && make train-sequential && git commit -m 'new model' -a && git push origin master"
 
 echo az vm stop \
    --subscription $AZURE_SUBSCR \
