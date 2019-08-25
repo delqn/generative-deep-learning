@@ -5,3 +5,4 @@ gedelearn/__pycache__
 screenlog.*
 .env
 *\#*
+.ssh
