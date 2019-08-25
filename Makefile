@@ -9,3 +9,8 @@ prereqs:
 	virtualenv generative
 	source generative/bin/activate
 	pip3 install -r requirements.pip3
+
+
+.PHONY: run
+run:
+	python3 ./gedelearn/view.py
