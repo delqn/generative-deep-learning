@@ -19,5 +19,5 @@ IP=$(az vm show -d \
 echo "Init..."
 # Give the VM time to start SSH etc.
 for i in 1 2 3 4 5; do scp -oStrictHostKeyChecking=no .ssh/id_rsa* $AZURE_USER@$IP:.ssh/ && break || sleep 15; done
-scp -oStrictHostKeyChecking=no ./scripts/init.sh $AZURE_USER@$IP:
+scp -oStrictHostKeyChecking=no ./scripts/azure/init.sh $AZURE_USER@$IP:
 ssh -oStrictHostKeyChecking=no $AZURE_USER@$IP './init.sh'

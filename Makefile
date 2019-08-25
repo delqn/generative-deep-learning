@@ -29,12 +29,16 @@ azure-bootstrap:
 	./scripts/azure/bootstrap.sh
 
 .PHONY: azure-train
-azure-train:
+azure-train: azure-bootstrap
 	./scripts/azure/train.sh
 
 .PHONY: azure-deallocate
 azure-deallocate:
 	./scripts/azure/deallocate.sh
+
+.PHONY: azure-shell
+azure-shell:
+	./scripts/azure/shell.sh
 
 .PHONY: clean
 clean:
