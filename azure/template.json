@@ -1,0 +1,81 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_generative_deep_learning_name": {
+            "defaultValue": "generative-deep-learning",
+            "type": "String"
+        },
+        "disks_generative_deep_learning_OsDisk_1_xxx_externalid": {
+            "defaultValue": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Compute/disks/generative-deep-learning_OsDisk_1_xxx",
+            "type": "String"
+        },
+        "networkInterfaces_generative_deep_xxx_externalid": {
+            "defaultValue": "/subscriptions/xxx/resourceGroups/xxx/providers/Microsoft.Network/networkInterfaces/generative-deep-xxx",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-03-01",
+            "name": "[parameters('virtualMachines_generative_deep_learning_name')]",
+            "location": "westus2",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_NV12_Promo"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_generative_deep_learning_name'), '_OsDisk_1_xxx')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "id": "[parameters('disks_generative_deep_learning_OsDisk_1_xxx_externalid')]"
+                        }
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_generative_deep_learning_name')]",
+                    "adminUsername": "xxx",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": true,
+                        "ssh": {
+                            "publicKeys": [
+                                {
+                                    "path": "/home/xxx/.ssh/authorized_keys",
+                                    "keyData": "ssh-rsa xxx yy@zz"
+                                }
+                            ]
+                        },
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_generative_deep_xxx_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://xxxdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        }
+    ]
+}

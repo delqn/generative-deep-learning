@@ -6,6 +6,11 @@ set -aueo pipefail
 
 source .env
 
+az vm show -d \
+   --resource-group $AZURE_RESOURCEGRP \
+   --name $AZURE_VMNAME \
+   --query powerState -o tsv
+
 echo "Shut down VM..."
 echo az vm stop \
    --subscription $AZURE_SUBSCR \
@@ -13,9 +18,16 @@ echo az vm stop \
    --name $AZURE_VMNAME \
    --no-wait
 
+
 echo "Deallocating VM..."
 echo az vm deallocate \
    --subscription $AZURE_SUBSCR \
    --resource-group $AZURE_RESOURCEGRP \
    --name $AZURE_VMNAME \
    --no-wait
+
+
+az vm show -d \
+   --resource-group $AZURE_RESOURCEGRP \
+   --name $AZURE_VMNAME \
+   --query powerState -o tsv
