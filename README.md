@@ -5,7 +5,8 @@ This repository contains generative deep learning experiments using [Azure NV GP
 # Using this
   - Train locally: `make train`
   - Train in Azure: `make azure-train`
-  - Deallocate the VM as soon as training is done: `make azure-deallocate`
+    - Bootstrap the VM with the necessary dependencies: `make azure-bootstrap`
+    - Deallocate the VM as soon as training is done: `make azure-deallocate`
   - Start jupyter: `source ./generative/bin/activate && jupyter notebook`
   - [Jupyter Notebook](http://localhost:8888/notebooks/compile-train-test.ipynb)
 

@@ -17,4 +17,4 @@ IP=$(az vm show -d \
    --query publicIps -o tsv)
 
 echo "Train..."
-ssh $AZURE_USER@$IP "cd src/generative-deep-learning && git pull --rebase origin master && make train && git commit -m 'new model' -a && git push origin master"
+ssh -oStrictHostKeyChecking=no $AZURE_USER@$IP "cd src/generative-deep-learning && git pull --rebase origin master && make train && git commit -m 'new model' -a && git push origin master"
