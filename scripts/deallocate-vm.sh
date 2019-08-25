@@ -6,15 +6,16 @@ set -aueo pipefail
 
 source .env
 
-#    --no-wait
+echo "Shut down VM..."
 echo az vm stop \
    --subscription $AZURE_SUBSCR \
    --resource-group $AZURE_RESOURCEGRP \
-   --name $AZURE_VMNAME
+   --name $AZURE_VMNAME \
+   --no-wait
 
-#    --no-wait
 echo "Deallocating VM..."
 echo az vm deallocate \
    --subscription $AZURE_SUBSCR \
    --resource-group $AZURE_RESOURCEGRP \
-   --name $AZURE_VMNAME
+   --name $AZURE_VMNAME \
+   --no-wait

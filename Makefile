@@ -12,7 +12,6 @@ prereqs:
 	source generative/bin/activate
 	pip3 install -r requirements.pip3
 
-
 .PHONY: run
 run:
 	python3 run.py
@@ -24,3 +23,12 @@ train-sequential:
 .PHONY: train
 train:
 	python3 -c 'from gedelearn import get_model, compile, train, save, show; m=get_model(); compile(m); train(m); save(m)'
+
+.PHONY: train-on-azure
+train-on-azure:
+	./scripts/train-on-azure.sh
+
+.PHONY: clean
+clean:
+	$(shell find . -name '*~' -delete)
+	$(shell find . -name '*\#*' -delete)
