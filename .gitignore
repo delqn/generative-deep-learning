@@ -6,3 +6,4 @@ screenlog.*
 .env
 *\#*
 .ssh
+*.tgz

@@ -2,7 +2,7 @@
 
 set -auexo pipefail
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install git make emacs25-nox
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install git make emacs25-nox mg
 ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
 sudo apt-get -yq -o Dpkg::Options::="--force-overwrite" install --fix-broken
@@ -17,14 +17,15 @@ rm -f /tmp/${CUDA_REPO_PKG}
 sudo apt-get -yq -o Dpkg::Options::="--force-overwrite" install --fix-broken
 
 sudo apt-get -yq update
-sudo apt-get -yq install cuda-drivers cuda
+sudo apt-get -yq install cuda-drivers cuda-driver-dev-10-0 cuda-10-0
 
 
 mkdir -p ~/src
 cd ~/src
 git clone git@github.com:delqn/generative-deep-learning.git || true
 cd ~/src/generative-deep-learning
-pip3 install tensorflow virtualenv
-virtualenv generative
-source generative/bin/activate
-make prereqs
+pip3 install virtualenv
+sudo apt-get install git-lfs
+git lfs install
+git lfs track model.h5
+git lfs track model.json
