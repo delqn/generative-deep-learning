@@ -24,6 +24,10 @@ train-sequential:
 train:
 	python3 -c 'from pupil import get_model, compile, train, save, show; m=get_model(); compile(m); train(m); save(m)'
 
+.PHONY: evaluate
+evaluate:
+	python3 -c 'from pupil import load, evaluate, get_test_data, compile; m=load(); compile(m); evaluate(m, *get_test_data())'
+
 # Arguably this should be moved in Cloud-init
 .PHONY: azure-bootstrap
 azure-bootstrap:
