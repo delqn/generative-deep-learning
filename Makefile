@@ -40,6 +40,10 @@ azure-deallocate:
 azure-shell:
 	./scripts/azure/shell.sh
 
+.PHONY: azure-status
+azure-status:
+	./scripts/azure/status.sh
+
 .PHONY: clean
 clean:
 	$(shell find . -name '*~' -delete)

@@ -18,5 +18,8 @@ IP=$(az vm show -d \
    --name $AZURE_VMNAME \
    --query publicIps -o tsv)
 
+echo "Copy train script..."
+scp -oStrictHostKeyChecking=no ./scripts/azure/remote-train.sh $AZURE_USER@$IP:
+
 echo "Train..."
-ssh -oStrictHostKeyChecking=no $AZURE_USER@$IP "cd src/generative-deep-learning && git pull --rebase origin master && make train && git commit -m 'new model' -a && git push origin master"
+ssh -oStrictHostKeyChecking=no "$AZURE_USER@$IP" "remote-train.sh"
