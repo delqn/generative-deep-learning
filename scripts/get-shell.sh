@@ -15,4 +15,3 @@ scp -oStrictHostKeyChecking=no .ssh/id_rsa* $AZURE_USER@$IP:.ssh/
 scp ./scripts/trainer-init.sh $AZURE_USER@$IP:
 ssh $AZURE_USER@$IP './trainer-init.sh'
 ssh -oStrictHostKeyChecking=no $AZURE_USER@$IP
-scripts/check-gpu.sh
