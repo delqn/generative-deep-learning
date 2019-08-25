@@ -13,4 +13,12 @@ prereqs:
 
 .PHONY: run
 run:
-	python3 ./gedelearn/view.py
+	python3 run.py
+
+.PHONY: train-sequential
+train-sequential:
+	python3 -c 'from gedelearn import get_model_sequential, compile, train, show; m=get_model_sequential(); compile(m); train(m)'
+
+.PHONY: train
+train:
+	python3 -c 'from gedelearn import get_model, compile, train, show; m=get_model(); compile(m); train(m)'
