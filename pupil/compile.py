@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from keras.optimizers import Adam
 
 def compile(model):

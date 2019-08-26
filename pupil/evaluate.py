@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 def evaluate(model, x_test, y_test):
     """Evaluates the model"""
     score = model.evaluate(x_test, y_test, batch_size=1000)

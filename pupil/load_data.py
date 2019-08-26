@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from keras.utils import to_categorical
 from keras.datasets import cifar10
 

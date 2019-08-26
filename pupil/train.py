@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from .model import get_model_sequential, get_model
 from .load_data import get_train_data, get_test_data
 

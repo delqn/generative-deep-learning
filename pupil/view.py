@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from absl import logging
 logging._warn_preinit_stderr = 0
 
