@@ -21,7 +21,7 @@ CLASSES = np.array([
     'truck'
 ])
 
-def show(model):
+def show(model, x_test, y_test):
     preds = model.predict(x_test)
     preds_single = CLASSES[np.argmax(preds, axis=-1)]
     actual_single = CLASSES[np.argmax(y_test, axis=-1)]
