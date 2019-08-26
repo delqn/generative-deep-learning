@@ -9,3 +9,4 @@ screenlog.*
 *.tgz
 *.pyc
 __pycache__
+.idea
