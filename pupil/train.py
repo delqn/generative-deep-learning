@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 
 from .model import get_model_sequential, get_model
-from .load_data import get_train_data
+from .load_data import get_train_data, get_test_data
 
 def train(model):
     x_train, y_train = get_train_data()
+    x_test, y_test = get_test_data()
     model.fit(
         x_train,
         y_train,
         batch_size=32,
         epochs=10,
         shuffle=True,
+        validation_data=(x_test, y_test),
         verbose=1,  # set this to 0 to remove noise
     )
 

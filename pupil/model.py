@@ -16,12 +16,14 @@ from keras.models import model_from_json
 from .const import NUM_CLASSES
 
 def get_model_sequential():
-    return Sequential([
+    model = Sequential([
         Dense(200, activation='relu', input_shape=(32, 32, 3)),
         Flatten(),
         Dense(150, activation='relu'),
         Dense(10, activation='softmax'),
     ])
+    model.summary()
+    return model
 
 
 def get_model_0():
@@ -30,37 +32,33 @@ def get_model_0():
     layers = Dense(units=200, activation='relu')(layers)
     layers = Dense(units=150, activation='relu')(layers)
     output_layer = Dense(units=10, activation='softmax')(layers)
-    return Model(input_layer, output_layer)
+    model = Model(input_layer, output_layer)
+    model.summary()
+    return model
+
+def b_a(layer):
+    return LeakyReLU()(BatchNormalization()(layer))
 
 def get_model():
     input_layer = Input(shape=(32, 32, 3))
+    cl1 = b_a(Conv2D(filters=32, kernel_size=3, strides=1, padding='same')(input_layer))
+    cl2 = b_a(Conv2D(filters=32, kernel_size=3, strides=2, padding='same')(cl1))
+    cl3 = b_a(Conv2D(filters=64, kernel_size=3, strides=2, padding='same')(cl2))
+    cl4 = b_a(Conv2D(filters=64, kernel_size=3, strides=2, padding='same')(cl3))
 
-    cl1 = Conv2D(filters=32, kernel_size=3, strides=1, padding='same')(input_layer)
-    batch_normalized_1 = BatchNormalization()(cl1)
-    first = LeakyReLU()(batch_normalized_1)
+    flatten_layer = Flatten()(cl4)
 
-    cl2 = Conv2D(filters=32, kernel_size=3, strides=2, padding='same')(first)
-    bn2 = BatchNormalization()(cl2)
-    second = LeakyReLU()(bn2)
+    dl1 = b_a(Dense(128)(flatten_layer))
 
-    cl3 = Conv2D(filters=64, kernel_size=3, strides=2, padding='same')(first)
-    bn3 = BatchNormalization()(cl3)
-    third = LeakyReLU()(bn3)
+    do = Dropout(rate=0.5)(dl1)
 
-    cl4 = Conv2D(filters=64, kernel_size=3, strides=2, padding='same')(first)
-    bn4 = BatchNormalization()(cl4)
-    fourth = LeakyReLU()(bn4)
+    dl2 = Dense(NUM_CLASSES)(do)
+    output_layer = Activation('softmax')(dl2)
 
-    flatten_layer = Flatten()(fourth)
+    model = Model(input_layer, output_layer)
 
-    dl5 = Dense(128)(flatten_layer)
-    bn5 = BatchNormalization()(dl5)
-    fifth = LeakyReLU()(bn5)
-    do = Dropout(rate=0.5)(fifth)
-
-    dl6 = Dense(NUM_CLASSES)(do)
-    output_layer = Activation('softmax')(dl6)
-    return Model(input_layer, output_layer)
+    model.summary()
+    return model
 
 
 def load():
