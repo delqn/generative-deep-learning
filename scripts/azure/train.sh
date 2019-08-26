@@ -21,7 +21,7 @@ IP=$(az vm show -d \
 echo "VM's IP: $IP"
 
 echo "Copy train script..."
-scp -oStrictHostKeyChecking=no ./scripts/azure/remote-train.sh $AZURE_USER@$IP:
+for i in 1 2 3 4 5; do scp -oStrictHostKeyChecking=no ./scripts/azure/remote-train.sh $AZURE_USER@$IP: && break || sleep 15; done
 
 echo "Train..."
 ssh -oStrictHostKeyChecking=no "$AZURE_USER@$IP" "./remote-train.sh"
