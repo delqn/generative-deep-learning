@@ -18,6 +18,8 @@ IP=$(az vm show -d \
    --name $AZURE_VMNAME \
    --query publicIps -o tsv)
 
+echo "VM's IP: $IP"
+
 echo "Copy train script..."
 scp -oStrictHostKeyChecking=no ./scripts/azure/remote-train.sh $AZURE_USER@$IP:
 
